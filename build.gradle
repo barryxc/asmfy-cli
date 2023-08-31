@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+
+    }
+}
+
+plugins {
+    id 'java-library'
+    id "application"
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+application {
+    mainClassName = 'com.example.javalib.ShellMain'
+}
+
+installDist {
+    into("../../bin/asmfy")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+
+    implementation("org.ow2.asm:asm:6.0")
+    implementation("org.ow2.asm:asm-commons:6.0")
+    implementation("org.ow2.asm:asm-util:6.0")
+
+    implementation 'info.picocli:picocli:4.7.4'
+    annotationProcessor 'info.picocli:picocli-codegen:4.7.4'
+
+}
+
+
+
