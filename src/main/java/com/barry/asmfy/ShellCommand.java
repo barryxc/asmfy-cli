@@ -19,6 +19,7 @@ package com.barry.asmfy;
 import org.objectweb.asm.util.ASMifier;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 
 import picocli.CommandLine;
@@ -28,27 +29,22 @@ import picocli.CommandLine;
  * @since 2023/7/14
  */
 @CommandLine.Command(name = "asmfy", description = "generate bytecode")
-public class ShellCommand implements Callable {
+public class ShellCommand implements Callable<Object> {
 
     @CommandLine.Option(names = {"-i", "--input"}, description = "input .class file")
     public String path;
 
-
-    public int test() throws IOException {
+    @Override
+    public Object call() throws Exception {
+        if (path == null || path.isEmpty()) {
+            System.out.println("invalid path");
+            return null;
+        }
         try {
             ASMifier.main(new String[]{path});
-            return 0;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-    }
-
-    @Override
-    public Integer call() throws Exception {
-        if (path == null || path.isEmpty()) {
-            System.out.println("need input file path");
-            return -1;
-        }
-        return test();
+        return null;
     }
 }

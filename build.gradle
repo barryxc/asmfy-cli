@@ -22,6 +22,7 @@ application {
     mainClassName = 'com.example.javalib.ShellMain'
 }
 
+//自定义安装目录
 installDist {
     into("../../bin/asmfy")
 }
