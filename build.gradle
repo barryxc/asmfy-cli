@@ -19,7 +19,7 @@ repositories {
 }
 
 application {
-    mainClassName = 'com.example.javalib.ShellMain'
+    mainClassName = 'com.barry.asmfy.ShellMain'
 }
 
 //自定义安装目录
